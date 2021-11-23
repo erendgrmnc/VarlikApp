@@ -5,7 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import SingInScreen from './SingInScreen';
 import { auth } from '../../firebase';
-const AuthManagementScreen = (prop) => {
+import WalletScreen from '../Wallet/WalletScreen';
+const AuthManagementScreen = (prop, { navigation }) => {
 
 
     function GetSignUpScreen() {
@@ -16,25 +17,27 @@ const AuthManagementScreen = (prop) => {
         return <SingInScreen />
     }
 
+    function GetWalletScreen() {
+        return <WalletScreen />
+    }
+
+    auth().onAuthStateChanged((user) => {
+        if (user) {
+            navigation.navigate('Wallet');
+        }
+        else {
+            navigation.navigate('Sign In');
+        }
+    });
+
     const Stack = createNativeStackNavigator();
-    if (auth.currentUser) {
-        return (
-            <Stack.Navigator>
-                <Stack.Screen name='Sign In' component={GetSignInScreen} />
-                <Stack.Screen name='Sign Up' component={GetSignUpScreen} />
-            </Stack.Navigator>
-        );
 
-
-    }
-    else {
-        return (
-            <View>
-                <Text>{auth.currentUser.uid}</Text>
-            </View>
-        );
-    }
-
+    return (
+        <Stack.Navigator>
+            <Stack.Screen name='Sign In' component={GetSignInScreen} />
+            <Stack.Screen name='Wallet' component={GetWalletScreen} />
+        </Stack.Navigator>
+    );
 }
 
 export default AuthManagementScreen;

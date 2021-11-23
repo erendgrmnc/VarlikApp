@@ -6,26 +6,70 @@ const SingInScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
+    function ClearInputs() {
+        this.emailInput.clear();
+        this.passwordInput.clear();
+    }
+
     async function handleSignUp() {
-        await signUp(email, password);
+
+        try {
+            await signUp(email, password).then(() => {
+                Alert.alert(
+                    "Başarıyla Kayıt Olundu !",
+                    "Kayıt işlemi başarıyla tamamlandı.",
+                    [
+                        {
+                            text: "Tamam",
+                            onPress: () => {
+                                //TO DO Kayıt Olduktan Sonra Cüzdanım Sayfasına Yönlendir. 
+                            }
+                        }
+                    ]
+                )
+            })
+        }
+        catch (exception) {
+
+        }
+
     }
 
     async function handleSignIn() {
 
-        await signIn(email, password).then(() => {
+        try {
+            await signIn(email, password).then(() => {
+                Alert.alert(
+                    "Hoşgeldin" + auth.currentUser.email,
+                    "Başarıyla Giriş Yapıldı.",
+                    [
+                        {
+                            text: "Tamam", onPress: () => {
+                                //TO DO Kayıt Olduktan Sonra Cüzdanım Sayfasına Yönlendir. 
+                            }
+                        }
+                    ]
+                );
+            });
+        }
+        catch (exception) {
             Alert.alert(
-                "Hoşgeldin" + auth.currentUser.email,
-                "SelamunAleyküm",
+                "Hata",
+                "Kayıt olama işlemi sırasında bir hata meydana geldi!\n" + exception,
                 [
                     {
-                        text: "Sg",
-                        onPress: () => console.log("Cancel Pressed"),
+                        text: "Tamam",
+                        onPress: () => {
+                            ClearInputs();
+                        },
                         style: "cancel"
-                    },
-                    { text: "Sağol", onPress: () => console.log("OK Pressed") }
+                    }
                 ]
-            );
-        });
+
+            )
+        }
+
     }
 
     return (
@@ -37,6 +81,7 @@ const SingInScreen = () => {
                 style={styles.inputContainer}
             >
                 <TextInput
+                    ref={input => { this.emailInput = input }}
                     placeholder='email'
                     value={email}
                     onChangeText={text => {
@@ -45,6 +90,7 @@ const SingInScreen = () => {
                     style={styles.emailInput}
                 />
                 <TextInput
+                    ref={input => { this.passwordInput = input }}
                     placeholder='password'
                     secureTextEntry
                     value={password}
