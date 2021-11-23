@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import CoinListScreen from './screens/CoinListScreen';
 import BistListScreen from './screens/BistListScreen';
+import AuthManagementScreen from './screens/Auth/AuthManagementScreen';
 function GetHomeScreen() {
   return (
     <HomeScreen />
@@ -21,6 +22,10 @@ function GetBistListScreen() {
   return <BistListScreen />
 }
 
+function GetAuthManagementScreen() {
+  return <AuthManagementScreen />
+}
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -28,7 +33,7 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name='Crypto Coins' component={GetCoinListScreen} />
-        <Tab.Screen name='Home' component={GetHomeScreen} />
+        <Tab.Screen name='Auth' component={GetAuthManagementScreen} />
         <Tab.Screen name='Borsa İstanbul' component={BistListScreen} />
       </Tab.Navigator>
     </NavigationContainer>
