@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import SingInScreen from './SingInScreen';
 import { auth, signIn } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import WalletScreen from '../Wallet/WalletScreen';
 const AuthManagementScreen = (prop) => {
+    const [isUserSignedIn, setUserSignedIn] = useState(false);
 
     function GetSignUpScreen() {
         return <SignUpScreen />
@@ -21,14 +20,13 @@ const AuthManagementScreen = (prop) => {
         return <WalletScreen />
     }
 
-    const [isUserSignedIn, setUserSignedIn] = useState(false);
 
     onAuthStateChanged(auth, user => {
-        if (user) {
-            setUserSignedIn(true);
+        if (auth.currentUser == null) {
+            setUserSignedIn(false);
         }
         else {
-            setUserSignedIn(false);
+            setUserSignedIn(true);
         }
     });
 
