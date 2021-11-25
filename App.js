@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
 import CoinListScreen from './screens/CoinListScreen';
@@ -22,13 +22,15 @@ function GetBistListScreen() {
   return <BistListScreen />
 }
 
-function GetAuthManagementScreen() {
-  return <AuthManagementScreen />
-}
+
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+
+  function GetAuthManagementScreen() {
+    return <AuthManagementScreen />
+  }
   return (
     <NavigationContainer>
       <Tab.Navigator>

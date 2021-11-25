@@ -35,3 +35,11 @@ export function signIn(email, password) {
 export function signUp(email, password) {
     return createUserWithEmailAndPassword(auth, email, password);
 }
+export function getUserToken() {
+    if (auth.currentUser) {
+        return auth.currentUser.getIdToken();
+    }
+    else {
+        return null;
+    }
+}

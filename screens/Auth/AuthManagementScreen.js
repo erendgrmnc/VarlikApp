@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUpScreen from './SignUpScreen';
 import SingInScreen from './SingInScreen';
-import { auth } from '../../firebase';
+import { auth, signIn } from '../../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 import WalletScreen from '../Wallet/WalletScreen';
-const AuthManagementScreen = (prop, { navigation }) => {
-
+const AuthManagementScreen = (prop) => {
 
     function GetSignUpScreen() {
         return <SignUpScreen />
@@ -21,23 +21,29 @@ const AuthManagementScreen = (prop, { navigation }) => {
         return <WalletScreen />
     }
 
-    auth().onAuthStateChanged((user) => {
+    const [isUserSignedIn, setUserSignedIn] = useState(false);
+
+    onAuthStateChanged(auth, user => {
         if (user) {
-            navigation.navigate('Wallet');
+            setUserSignedIn(true);
         }
         else {
-            navigation.navigate('Sign In');
+            setUserSignedIn(false);
         }
     });
 
-    const Stack = createNativeStackNavigator();
+    if (isUserSignedIn) {
+        return (
+            <WalletScreen />
+        );
+    }
+    else {
+        return (
+            <SingInScreen />
+        );
+    }
 
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name='Sign In' component={GetSignInScreen} />
-            <Stack.Screen name='Wallet' component={GetWalletScreen} />
-        </Stack.Navigator>
-    );
+
 }
 
 export default AuthManagementScreen;
