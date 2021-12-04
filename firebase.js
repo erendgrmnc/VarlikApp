@@ -1,9 +1,11 @@
 // Import the functions you need from the SDKs you need
+import React, { useState, useEffect } from 'react';
 import { initializeApp } from "firebase/app";
 import {
     getAuth,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
+    onAuthStateChanged
 } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { initializeFirestore } from "firebase/firestore";
@@ -37,9 +39,24 @@ export function signUp(email, password) {
 }
 export function getUserToken() {
     if (auth.currentUser) {
-        return auth.currentUser.getIdToken();
+        var token = auth.currentUser.get
+        return token;
     }
     else {
         return null;
     }
+}
+
+export function useToken() {
+    const [token, setToken] = useState('')
+    useEffect(() => {
+        onAuthStateChanged(user => {
+            if (user) {
+                user.getIdToken(true)
+                    .then(latestToken => setToken(latestToken))
+                    .catch(err => console.log(err))
+            }
+        })
+    }, [])
+    return token
 }

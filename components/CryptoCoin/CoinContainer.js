@@ -42,8 +42,6 @@ const CoinContainer = (prop) => {
                 <View>
                     {GetPercentageText(prop.coin.quote.USD.percent_change_24h)}
                 </View>
-
-
             </View>
         </View>
     );

@@ -1,59 +1,40 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import UserStockModal from './UserStockModal';
-const GetPercentageText = (percent) => {
-    if (percent > 0) {
-        return (
-            <Text style={styles.positivePercentText}>{percent}</Text>
-        );
-    }
-    else if (percent < 0) {
-        return (
-            <Text style={styles.negativePercentText}>{percent}</Text>
-        );
-    }
-    else {
-        return (
-            <Text>{percent}</Text>
-        );
-    }
-}
-const UserStockContainer = (prop) => {
+import UserCoinModal from './UserCoinModal'
+
+const UserCoinContainer = (prop) => {
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <View>
             <TouchableOpacity
                 onPress={() => {
+
                     setModalVisible(true);
                 }}
             >
                 <View style={styles.mainContainer}>
                     <View>
-                        <Text>{prop.stock.stockCode}</Text>
+                        <Text>{prop.coin.coinCode}</Text>
                     </View>
                     <View style={styles.pricesContainer}>
                         <View>
                             <Text>
-                                Alış Fiyatı: {prop.stock.stockBuyPrice} ₺
+                                Alış Fiyatı: {prop.coin.coinBuyPrice} ₺
                             </Text>
                         </View>
                         <View style={styles.rowContainer}>
                             <Text>Adet: </Text>
-                            <Text>{prop.stock.stockAmount}</Text>
+                            <Text>{prop.coin.coinAmount}</Text>
                         </View>
-
-
                     </View>
                 </View>
             </TouchableOpacity>
-
-            <UserStockModal modalVisible={modalVisible} setModalVisible={setModalVisible} stock={prop.stock} currentStock={prop.currentStock} />
+            <UserCoinModal modalVisible={modalVisible} setModalVisible={setModalVisible} coin={prop.coin} currentCoin={prop.currentCoin} />
         </View>
-
     )
 }
 
-export default UserStockContainer
+export default UserCoinContainer
 
 const styles = StyleSheet.create({
     mainContainer: {

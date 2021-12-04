@@ -5,8 +5,12 @@ import SingInScreen from './SingInScreen';
 import { auth, signIn } from '../../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import WalletScreen from '../Wallet/WalletScreen';
+
+let authFlag = false;
 const AuthManagementScreen = (prop) => {
     const [isUserSignedIn, setUserSignedIn] = useState(false);
+    const [userToken, setUserToken] = useState('');
+    const [loading, setLoading] = useState(true);
 
     function GetSignUpScreen() {
         return <SignUpScreen />
@@ -19,20 +23,34 @@ const AuthManagementScreen = (prop) => {
     function GetWalletScreen() {
         return <WalletScreen />
     }
-
-
     onAuthStateChanged(auth, user => {
-        if (auth.currentUser == null) {
-            setUserSignedIn(false);
+        if (user) {
+            setUserSignedIn(true);
+            if (!authFlag) {
+                console.log('calisti')
+                user.getIdToken(true).then(idToken => {
+                    console.log("------TOKEN-------")
+                    setUserToken(idToken);
+                    console.log(idToken);
+                    console.log("------------------");
+                });
+                authFlag = true;
+            }
+
+
         }
         else {
-            setUserSignedIn(true);
+            setUserSignedIn(false);
+            if (userToken != null || userToken != '') {
+                console.log('Haydaaaa');
+            }
         }
     });
 
+
     if (isUserSignedIn) {
         return (
-            <WalletScreen />
+            <WalletScreen userToken={userToken} />
         );
     }
     else {
@@ -40,8 +58,6 @@ const AuthManagementScreen = (prop) => {
             <SingInScreen />
         );
     }
-
-
 }
 
 export default AuthManagementScreen;
