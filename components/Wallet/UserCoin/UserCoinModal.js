@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,17 +9,137 @@ import {
 } from "react-native";
 
 const UserCoinModal = (prop) => {
-  return (
-    <Modal
-      presentationStyle="overFullScreen"
-      visible={prop.modalVisible}
-      style={styles.modalContainer}
+  const [profitLoss, setProfitLoss] = useState(
+    parseInt(prop.currentCoin.quote.USD.price) >
+      parseInt(prop.coin.coinBuyPrice)
+  );
+
+  const textLength = 15;
+
+  const Dataline = ({ text, data, style }) => (
+    <View
+      style={{
+        alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: 30,
+        marginTop: 10,
+      }}
     >
-      <View style={{ paddingTop: 30, flex: 1 }}>
+      <Text style={{ fontWeight: "600", fontSize: 15, color: "#F0F3F4" }}>
+        {text}
+      </Text>
+      <Text
+        style={[{ fontWeight: "400", fontSize: 15, color: "#F0F3F4" }, style]}
+      >
+        {data}
+      </Text>
+    </View>
+  );
+
+  return (
+    <Modal visible={prop.modalVisible} transparent animationType="slide">
+      <View
+        style={{
+          paddingTop: 30,
+          flex: 1,
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 500,
+          backgroundColor: "#808B96",
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 5,
+          },
+          shadowOpacity: 0.36,
+          shadowRadius: 6.68,
+
+          elevation: 11,
+        }}
+      >
         <View style={styles.headerContainer}></View>
-        <View style={styles.bodyContainer}>
-          <Text>{prop.currentCoin.name}</Text>
-          <Text>{prop.coin.coinCode}</Text>
+        <View
+          style={{
+            paddingVertical: 10,
+            alignItems: "center",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "#D5DBDB",
+              borderRadius: 7,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 5,
+              },
+              shadowOpacity: 0.36,
+              shadowRadius: 6.68,
+
+              elevation: 11,
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 23,
+                padding: 15,
+                paddingHorizontal: 30,
+              }}
+            >
+              {prop.currentCoin.name.substring(0, textLength) +
+                (prop.currentCoin.name.length > textLength ? "..." : "")}{" "}
+              ({prop.coin.coinCode})
+            </Text>
+          </View>
+        </View>
+
+        <View
+          style={{
+            paddingVertical: 20,
+            marginTop: 30,
+          }}
+        >
+          <Dataline
+            text="Current Price:"
+            data={prop.currentCoin.quote.USD.price + "$"}
+          ></Dataline>
+          <Dataline
+            text="Buying Price:"
+            data={prop.coin.coinBuyPrice + "$"}
+          ></Dataline>
+
+          <Dataline text="Amount:" data={prop.coin.coinBuyAmount}></Dataline>
+
+          <Dataline
+            text="P/L Percentage:"
+            style={profitLoss ? styles.profitText : styles.lossText}
+            data={
+              (profitLoss ? "+" : "-") +
+              (
+                (parseInt(prop.currentCoin.quote.USD.price) * 100) /
+                parseInt(prop.coin.coinBuyPrice)
+              ).toFixed(3) +
+              "%"
+            }
+          ></Dataline>
+
+          <Dataline
+            text="P/L Amount:"
+            style={profitLoss ? styles.profitText : styles.lossText}
+            data={
+              (profitLoss ? "+" : "") +
+              (parseInt(prop.currentCoin.quote.USD.price) -
+                parseInt(prop.coin.coinBuyPrice) *
+                  parseInt(prop.coin.coinBuyAmount)) +
+              "$"
+            }
+          ></Dataline>
         </View>
 
         <View style={styles.bottomContainer}>
@@ -40,6 +160,7 @@ export default UserCoinModal;
 const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: "black",
+    height: 100,
   },
   bottomContainer: {
     position: "absolute",
@@ -61,5 +182,11 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontSize: 17,
+  },
+  profitText: {
+    color: "#58D68D",
+  },
+  lossText: {
+    color: "#C0392B",
   },
 });

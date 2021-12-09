@@ -147,7 +147,7 @@ const AddUserCoinModal = (prop) => {
           style={[styles.button, styles.buttonOpen]}
           onPress={() => setModalVisible(true)}
         >
-          <Text style={styles.textStyle}>Add Stock</Text>
+          <Text style={styles.textStyle}>Add Coin</Text>
         </TouchableOpacity>
       </View>
     </View>
