@@ -6,38 +6,84 @@ const SingInScreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    function AlertUser(header, message) {
+        Alert.alert(header, message, [
+            {
+                text: "Tamam",
+                onPress: () => {
+                    console.log("Ok pressed");
+                },
+                style: "cancel",
+            },
+        ]);
+    }
+    function ValidateEmail(email) {
 
-    function ClearInputs() {
-        this.emailInput.clear();
-        this.passwordInput.clear();
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (email.match(validRegex)) {
+            return true;
+        }
+        else {
+            return false;
+
+        }
+
+    }
+
+    function ValidatePassword(password) {
+        if (password.length < 6 || password.length > 16) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
     async function handleSignUp() {
 
-        try {
-            await signUp(email, password).then(() => {
+        if (!ValidateEmail(email)) {
+            AlertUser('E Posta Uygun Değil !', 'Lütfen kayıtlı olduğunuz e posta adresini giriniz.');
+        }
+        else if (!ValidatePassword(password)) {
+            AlertUser('Şifre Uygun Değil !', 'Lütfen 6 ile 15 karakter arasında bir şifre giriniz !');
+        }
+        else {
+            try {
+                await signUp(email, password).then(() => {
+                    Alert.alert(
+                        "Başarıyla Kayıt Olundu !",
+                        "Kayıt işlemi başarıyla tamamlandı.",
+                        [
+                            {
+                                text: "Tamam",
+                                onPress: () => {
+                                    //TO DO Kayıt Olduktan Sonra Cüzdanım Sayfasına Yönlendir. 
+                                }
+                            }
+                        ]
+                    )
+                })
+            }
+            catch (exception) {
                 Alert.alert(
-                    "Başarıyla Kayıt Olundu !",
-                    "Kayıt işlemi başarıyla tamamlandı.",
+                    "Hata",
+                    "Giriş Yapma işlemi sırasında bir hata meydana geldi!\n" + exception,
                     [
                         {
                             text: "Tamam",
                             onPress: () => {
-                                //TO DO Kayıt Olduktan Sonra Cüzdanım Sayfasına Yönlendir. 
-                            }
+                            },
+                            style: "cancel"
                         }
                     ]
+
                 )
-            })
+            }
         }
-        catch (exception) {
-
-        }
-
     }
 
     async function handleSignIn() {
-
         try {
             await signIn(email, password).then(() => {
                 Alert.alert(
@@ -61,7 +107,6 @@ const SingInScreen = () => {
                     {
                         text: "Tamam",
                         onPress: () => {
-                            ClearInputs();
                         },
                         style: "cancel"
                     }
@@ -81,16 +126,15 @@ const SingInScreen = () => {
                 style={styles.inputContainer}
             >
                 <TextInput
-                    ref={input => { this.emailInput = input }}
                     placeholder='email'
                     value={email}
                     onChangeText={text => {
                         setEmail(text);
                     }}
                     style={styles.emailInput}
+                    maxLength={50}
                 />
                 <TextInput
-                    ref={input => { this.passwordInput = input }}
                     placeholder='şifre'
                     secureTextEntry
                     value={password}
@@ -98,6 +142,7 @@ const SingInScreen = () => {
                         setPassword(text);
                     }}
                     style={styles.passwordInput}
+                    maxLength={16}
                 />
             </View>
 

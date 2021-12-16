@@ -63,18 +63,19 @@ const AddUserCoinModal = (prop) => {
   }
 
   function addUserCoinButtonOnClick() {
-    if (buyPrice <= 0 || buyPrice == "" || buyPrice == null) {
-      AlertUser(
-        "Satın alma fiyatı geçerli değil",
-        "Alış fiyatı sıfırdan küçük veya sıfıra eşit olamaz."
-      );
-    } else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
+    if (coinDropDownValue == "" || coinDropDownValue == null) {
+      AlertUser("Kripto para seçilmedi", "Lütfen eklemek için kripto para seçin.");
+    }
+    else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
       AlertUser(
         "Satın alma tutarı geçersiz",
         "Satın alma tutarı sıfırdan küçük veya sıfıra eşit olamaz."
       );
-    } else if (coinDropDownValue == "" || coinDropDownValue == null) {
-      AlertUser("Kripto para seçilmedi", "Lütfen eklemek için kripto para seçin.");
+    } else if (buyPrice <= 0 || buyPrice == "" || buyPrice == null) {
+      AlertUser(
+        "Satın alma fiyatı geçerli değil",
+        "Alış fiyatı sıfırdan küçük veya sıfıra eşit olamaz."
+      );
     } else {
       console.log(coinDropDownValue + " - " + buyAmount + " - " + buyPrice);
       setPostModel({
