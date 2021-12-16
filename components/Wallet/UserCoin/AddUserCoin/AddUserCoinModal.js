@@ -41,8 +41,8 @@ const AddUserCoinModal = (prop) => {
         })
         .then(() => {
           AlertUser(
-            "Coin Added Successfuly !",
-            "Coind added to your account wallet successfuly !"
+            "Kripto Para Başarıyla Eklendi !",
+            "Kripto Para Hesap Cüzdanınıza Başarıyla Eklendi !"
           );
         });
     } catch (error) {
@@ -53,7 +53,7 @@ const AddUserCoinModal = (prop) => {
   function AlertUser(header, message) {
     Alert.alert(header, message, [
       {
-        text: "Okay",
+        text: "Tamam",
         onPress: () => {
           console.log("Ok pressed");
         },
@@ -65,16 +65,16 @@ const AddUserCoinModal = (prop) => {
   function addUserCoinButtonOnClick() {
     if (buyPrice <= 0 || buyPrice == "" || buyPrice == null) {
       AlertUser(
-        "Buy Price Not Valid",
-        "Buy price can't be less than or equal to zero."
+        "Satın alma fiyatı geçerli değil",
+        "Alış fiyatı sıfırdan küçük veya sıfıra eşit olamaz."
       );
     } else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
       AlertUser(
-        "Buy Amount Not Valid",
-        "Buy amount can't be less than or equal to zero."
+        "Satın alma tutarı geçersiz",
+        "Satın alma tutarı sıfırdan küçük veya sıfıra eşit olamaz."
       );
     } else if (coinDropDownValue == "" || coinDropDownValue == null) {
-      AlertUser("Coin Is Not Selected", "Please select a coin to add.");
+      AlertUser("Kripto para seçilmedi", "Lütfen eklemek için kripto para seçin.");
     } else {
       console.log(coinDropDownValue + " - " + buyAmount + " - " + buyPrice);
       setPostModel({
@@ -108,7 +108,7 @@ const AddUserCoinModal = (prop) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add Coin</Text>
+            <Text style={styles.modalText}>Kripto Para Ekle</Text>
             <View style={styles.inputContainer}>
               <CoinDropDownPicker
                 value={coinDropDownValue}
@@ -117,12 +117,12 @@ const AddUserCoinModal = (prop) => {
               <NumberInput
                 state={buyAmount}
                 setState={setBuyAmount}
-                placeholder="Amount"
+                placeholder="Miktar"
               />
               <NumberInput
                 state={buyPrice}
                 setState={setBuyPrice}
-                placeholder="Price"
+                placeholder="Fiyat"
               />
             </View>
             <View style={styles.buttonContainer}>
@@ -130,13 +130,13 @@ const AddUserCoinModal = (prop) => {
                 style={[styles.button, styles.buttonAdd]}
                 onPress={addUserCoinButtonOnClick}
               >
-                <Text style={styles.textStyle}>Add</Text>
+                <Text style={styles.textStyle}>Ekle</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={styles.textStyle}>Close</Text>
+                <Text style={styles.textStyle}>Kapat</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -147,7 +147,7 @@ const AddUserCoinModal = (prop) => {
           style={[styles.button, styles.buttonOpen]}
           onPress={() => setModalVisible(true)}
         >
-          <Text style={styles.textStyle}>Add Coin</Text>
+          <Text style={styles.textStyle}>Kripto Para Ekle</Text>
         </TouchableOpacity>
       </View>
     </View>

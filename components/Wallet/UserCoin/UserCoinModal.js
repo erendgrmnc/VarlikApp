@@ -11,7 +11,7 @@ import {
 const UserCoinModal = (prop) => {
   const [profitLoss, setProfitLoss] = useState(
     parseInt(prop.currentCoin.quote.USD.price) >
-      parseInt(prop.coin.coinBuyPrice)
+    parseInt(prop.coin.coinBuyPrice)
   );
 
   const textLength = 15;
@@ -136,7 +136,7 @@ const UserCoinModal = (prop) => {
               (profitLoss ? "+" : "") +
               (parseInt(prop.currentCoin.quote.USD.price) -
                 parseInt(prop.coin.coinBuyPrice) *
-                  parseInt(prop.coin.coinBuyAmount)) +
+                parseInt(prop.coin.coinBuyAmount)) +
               "$"
             }
           ></Dataline>
@@ -147,7 +147,7 @@ const UserCoinModal = (prop) => {
             style={[styles.button, styles.buttonClose]}
             onPress={() => prop.setModalVisible(!prop.modalVisible)}
           >
-            <Text style={styles.closeButtonText}>Close</Text>
+            <Text style={styles.closeButtonText}>Kapat</Text>
           </TouchableOpacity>
         </View>
       </View>

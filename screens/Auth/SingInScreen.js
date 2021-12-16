@@ -91,7 +91,7 @@ const SingInScreen = () => {
                 />
                 <TextInput
                     ref={input => { this.passwordInput = input }}
-                    placeholder='password'
+                    placeholder='şifre'
                     secureTextEntry
                     value={password}
                     onChangeText={text => {
@@ -110,7 +110,7 @@ const SingInScreen = () => {
                 >
                     <Text
                         style={styles.buttonText}
-                    >Login</Text>
+                    >Giriş Yap</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -119,7 +119,7 @@ const SingInScreen = () => {
                 >
                     <Text
                         style={styles.buttonOutlineText}
-                    >Register</Text>
+                    >Kayıt Ol</Text>
                 </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>

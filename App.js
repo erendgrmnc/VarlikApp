@@ -34,8 +34,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name='Crypto Coins' component={GetCoinListScreen} />
-        <Tab.Screen name='Auth' component={GetAuthManagementScreen} />
+        <Tab.Screen name='Kripto Para' component={GetCoinListScreen} />
+        <Tab.Screen name='Hesap' component={GetAuthManagementScreen} />
         <Tab.Screen name='Borsa İstanbul' component={BistListScreen} />
       </Tab.Navigator>
     </NavigationContainer>
