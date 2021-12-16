@@ -27,7 +27,7 @@ function MapStockList(stocks) {
 const StockDropDownPicker = (prop) => {
     const [open, setOpen] = useState(false);
     const [items, setItems] = useState([
-        { label: "Loading, Please Wait", value: '' }
+        { label: "Yükleniyor, Lütfen Bekleyin", value: '' }
     ]);
 
     const fetchData = async () => {
