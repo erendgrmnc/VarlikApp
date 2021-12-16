@@ -41,8 +41,8 @@ const AddUserStockModal = (prop) => {
         })
         .then(() => {
           AlertUser(
-            "Stock Added Successfuly !",
-            "Stock added to your account wallet successfuly !"
+            "Hisse Senedi Başarıyla Eklendi !",
+            "Hisse senedi başarıyla hesap cüzdanınıza eklendi !"
           );
         });
       console.log(response);
@@ -54,7 +54,7 @@ const AddUserStockModal = (prop) => {
   function AlertUser(header, message) {
     Alert.alert(header, message, [
       {
-        text: "Okay",
+        text: "Tamam",
         onPress: () => {
           console.log("Ok pressed");
         },
@@ -66,16 +66,16 @@ const AddUserStockModal = (prop) => {
   function addUserStockButtonOnClick() {
     if (buyPrice <= 0 || buyPrice == "" || buyPrice == null) {
       AlertUser(
-        "Buy Price Not Valid",
-        "Buy price can't be less than or equal to zero."
+        "Satın Alma Fiyatı Geçerli Değil",
+        "Alış fiyatı sıfırdan küçük veya sıfıra eşit olamaz."
       );
     } else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
       AlertUser(
-        "Buy Amount Not Valid",
-        "Buy amount can't be less than or equal to zero."
+        "Satın Alma Tutarı Geçersiz",
+        "Satın alma tutarı sıfırdan küçük veya sıfıra eşit olamaz."
       );
     } else if (stockDropDownValue == "" || stockDropDownValue == null) {
-      AlertUser("Stock Is Not Selected", "Please select a stock to add.");
+      AlertUser("Hisse Senedi Seçilmedi", "Lütfen eklemek için bir hisse senedi seçin.");
     } else {
       console.log(stockDropDownValue + " - " + buyAmount + " - " + buyPrice);
       setPostModel({
@@ -109,7 +109,7 @@ const AddUserStockModal = (prop) => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Add Stock</Text>
+            <Text style={styles.modalText}>Hisse Senedi Ekle</Text>
             <View style={styles.inputContainer}>
               <StockDropDownPicker
                 value={stockDropDownValue}
@@ -118,12 +118,12 @@ const AddUserStockModal = (prop) => {
               <NumberInput
                 state={buyAmount}
                 setState={setBuyAmount}
-                placeholder="Amount"
+                placeholder="Miktar"
               />
               <NumberInput
                 state={buyPrice}
                 setState={setBuyPrice}
-                placeholder="Price"
+                placeholder="Fiyat"
               />
             </View>
             <View style={styles.buttonContainer}>
@@ -131,13 +131,13 @@ const AddUserStockModal = (prop) => {
                 style={[styles.button, styles.buttonClose]}
                 onPress={addUserStockButtonOnClick}
               >
-                <Text style={styles.textStyle}>Add</Text>
+                <Text style={styles.textStyle}>Ekle</Text>
               </Pressable>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
               >
-                <Text style={styles.textStyle}>Close</Text>
+                <Text style={styles.textStyle}>Kapat</Text>
               </Pressable>
             </View>
           </View>
@@ -148,7 +148,7 @@ const AddUserStockModal = (prop) => {
           style={[styles.button, styles.buttonOpen]}
           onPress={() => setModalVisible(true)}
         >
-          <Text style={styles.textStyle}>Add Stock</Text>
+          <Text style={styles.textStyle}>Hisse Senedi Ekle</Text>
         </Pressable>
       </View>
     </View>

@@ -135,7 +135,7 @@ const SingInScreen = () => {
                     maxLength={50}
                 />
                 <TextInput
-                    placeholder='password'
+                    placeholder='şifre'
                     secureTextEntry
                     value={password}
                     onChangeText={text => {

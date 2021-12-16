@@ -16,7 +16,7 @@ const UserStockModal = (prop) => {
                     style={[styles.button, styles.buttonClose]}
                     onPress={() => prop.setModalVisible(!prop.modalVisible)}
                 >
-                    <Text style={styles.closeButtonText}>Close</Text>
+                    <Text style={styles.closeButtonText}>Kapat</Text>
                 </Pressable>
             </View>
         </Modal>
