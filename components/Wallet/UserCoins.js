@@ -108,7 +108,7 @@ const UserCoins = (prop) => {
   useEffect(() => {
     if (isReloadNeeded) {
       fetchData();
-      setIsNeedReload(false);
+      setIsReloadNeeded(false);
     }
   }, [isReloadNeeded]);
 
