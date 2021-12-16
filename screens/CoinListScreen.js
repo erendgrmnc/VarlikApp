@@ -51,19 +51,17 @@ const CoinListScreen = (props) => {
     try {
       const response = await axios.get(
         "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest" +
-          queryString,
+        queryString,
         {
           headers: requestOptions.headers,
         }
       );
       setCoins((prevState) => {
-        //console.log(Object.values(response.data));
         return {
           ...prevState,
           list: MapCoinList(Object.values(response.data.data)),
         };
       });
-      console.log(coins.list[0].coin.id, "idddd");
     } catch (error) {
       console.log(error);
     }
@@ -78,9 +76,6 @@ const CoinListScreen = (props) => {
   useEffect(() => {
     if (searchStr != null || searchStr != "") {
       const tempList = [];
-      //   coins.list.map((item) => {
-      //     console.log(item.id);
-      //   });
       setFilteredCoins((prevState) => {
         return {
           list: coins.list.filter(
@@ -125,7 +120,6 @@ const CoinListScreen = (props) => {
         <CoinScrollView
           coinList={searchStr != "" ? filteredCoins.list : coins.list}
         />
-        {console.log(filteredCoins.list)}
       </View>
     );
   } else {
