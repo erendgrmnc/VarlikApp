@@ -63,18 +63,19 @@ const AddUserCoinModal = (prop) => {
   }
 
   function addUserCoinButtonOnClick() {
-    if (buyPrice <= 0 || buyPrice == "" || buyPrice == null) {
-      AlertUser(
-        "Buy Price Not Valid",
-        "Buy price can't be less than or equal to zero."
-      );
-    } else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
+    if (coinDropDownValue == "" || coinDropDownValue == null) {
+      AlertUser("Coin Is Not Selected", "Please select a coin to add.");
+    }
+    else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
       AlertUser(
         "Buy Amount Not Valid",
         "Buy amount can't be less than or equal to zero."
       );
-    } else if (coinDropDownValue == "" || coinDropDownValue == null) {
-      AlertUser("Coin Is Not Selected", "Please select a coin to add.");
+    } else if (buyPrice <= 0 || buyPrice == "" || buyPrice == null) {
+      AlertUser(
+        "Buy Price Not Valid",
+        "Buy price can't be less than or equal to zero."
+      );
     } else {
       console.log(coinDropDownValue + " - " + buyAmount + " - " + buyPrice);
       setPostModel({

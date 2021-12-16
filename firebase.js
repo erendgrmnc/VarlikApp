@@ -60,3 +60,12 @@ export function useToken() {
     }, [])
     return token
 }
+
+export const signOutUser = async () => {
+    try {
+        await auth.signOut();
+    } catch (e) {
+        console.log(e);
+    }
+}
+
