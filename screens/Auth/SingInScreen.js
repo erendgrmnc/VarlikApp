@@ -68,7 +68,7 @@ const SingInScreen = () => {
             catch (exception) {
                 Alert.alert(
                     "Hata",
-                    "Giriş Yapma işlemi sırasında bir hata meydana geldi!\n" + exception,
+                    "Kayıt olma işlemi sırasında bir hata meydana geldi!",
                     [
                         {
                             text: "Tamam",
@@ -102,7 +102,7 @@ const SingInScreen = () => {
         catch (exception) {
             Alert.alert(
                 "Hata",
-                "Kayıt olama işlemi sırasında bir hata meydana geldi!\n" + exception,
+                "Giriş yapma işlemi sırasında bir hata meydana geldi!",
                 [
                     {
                         text: "Tamam",

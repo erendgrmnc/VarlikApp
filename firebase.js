@@ -31,6 +31,21 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
+const removeUser = () => {
+    try {
+        auth.currentUser.delete();
+    }
+    catch (exception) {
+
+    }
+}
+
+export function deleteUser() {
+    if (auth.currentUser) {
+        removeUser();
+    }
+}
+
 export function signIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
 }

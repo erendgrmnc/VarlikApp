@@ -21,7 +21,7 @@ const TypePicker = (prop) => {
       containerStyle={{ height: 40 }}
       onChangeItem={item => console.log(item.label, item.value)}
       dropDownDirection={Directions.DOWN}
-      placeholder={prop.value}
+      placeholder={"Hisse Senedi"}
     />
   );
 };

@@ -27,7 +27,7 @@ const UserStocks = (prop) => {
       var currentStockObj = {};
       let isStockMatched = false;
       currentStockList.forEach((currentStock) => {
-        if (currentStock.stock.code == stock.symbol) {
+        if (currentStock.stock.symbol == stock.stockCode) {
           currentStockObj = currentStock.stock;
           isStockMatched = true;
         }
@@ -45,7 +45,7 @@ const UserStocks = (prop) => {
 
   const requestOptions = {
     method: "GET",
-    uri: "https://192.168.1.33:5001",
+    uri: "https://varlikappapi.azurewebsites.net",
     qs: {},
     headers: {
       Authorization: "Bearer " + prop.userToken,

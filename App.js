@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from './screens/HomeScreen';
@@ -34,6 +34,19 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Kripto Para') {
+              return <Image style={{ width: 25, height: 25 }} source={require('./assets/crypto-icon.png')} />
+            } else if (route.name === 'Hesap') {
+              return <Image style={{ width: 25, height: 25 }} source={require('./assets/varlik-app-profile-icon.png')} />
+            }
+            else if (route.name === 'Borsa İstanbul') {
+              return <Image style={{ width: 25, height: 25 }} source={require('./assets/stock-icon.png')} />
+            }
+            ;
+          },
           tabBarActiveTintColor: 'tomato',
           tabBarInactiveTintColor: 'gray',
         })}

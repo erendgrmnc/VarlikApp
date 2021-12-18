@@ -17,7 +17,7 @@ let isDataFetched = false;
 const UserCoins = (prop) => {
   const requestOptions = {
     method: "GET",
-    uri: "https://192.168.1.33:5001",
+    uri: "https://varlikappapi.azurewebsites.net",
     qs: {},
     headers: {
       Authorization: "Bearer " + prop.userToken,

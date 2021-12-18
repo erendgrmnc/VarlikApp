@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Picker, TouchableOpacity } from "react-native";
-import { signOutUser } from "../../firebase";
+import { signOutUser, deleteUser } from "../../firebase";
 import axios from "axios";
 import UserCoins from "../../components/Wallet/UserCoins";
 import UserStocks from "../../components/Wallet/UserStocks";
@@ -9,6 +9,10 @@ import TypePicker from "../../components/Wallet/TypePicker";
 const WalletScreen = (prop) => {
   const [selectedValue, setSelectedValue] = useState("java");
   const [dropValue, setDropValue] = useState(null);
+
+  const deleteUserFunc = () => {
+    deleteUser();
+  }
 
   async function handleLogOut() {
     try {
@@ -50,14 +54,24 @@ const WalletScreen = (prop) => {
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View style={{ flex: 1, width: "100%" }}>
           <UserStocks userToken={prop.userToken} />
-          <TouchableOpacity
-            style={[styles.button, styles.buttonOutline]}
-            onPress={handleLogOut}
-          >
-            <Text
-              style={styles.buttonText}
-            >Çıkış Yap</Text>
-          </TouchableOpacity>
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
+            <TouchableOpacity
+              style={[styles.button, styles.deleteUserButton]}
+              onPress={deleteUserFunc}
+            >
+              <Text
+                style={{ color: "white", textAlign: "center", fontWeight: "bold" }}
+              >Hesabımı Sil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, styles.buttonOutline]}
+              onPress={handleLogOut}
+            >
+              <Text
+                style={styles.buttonText}
+              >Çıkış Yap</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -67,14 +81,24 @@ const WalletScreen = (prop) => {
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View style={{ flex: 1, width: "100%" }}>
           <UserCoins userToken={prop.userToken} />
-          <TouchableOpacity
-            style={[styles.button, styles.buttonOutline]}
-            onPress={handleLogOut}
-          >
-            <Text
-              style={styles.buttonText}
-            >Logout</Text>
-          </TouchableOpacity>
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
+            <TouchableOpacity
+              style={[styles.button, styles.deleteUserButton]}
+              onPress={deleteUserFunc}
+            >
+              <Text
+                style={{ color: "white", textAlign: "center", fontWeight: "bold" }}
+              >Hesabımı Sil</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, styles.buttonOutline]}
+              onPress={handleLogOut}
+            >
+              <Text
+                style={styles.buttonText}
+              >Çıkış Yap</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
@@ -99,12 +123,19 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#0782F9',
-    width: '25%',
+    height: 50,
+    width: 160,
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
     marginBottom: 10,
-    alignSelf: 'flex-end'
+    alignSelf: 'flex-end',
+    marginRight: 5,
+    justifyContent: "center",
+    textAlign: "center",
+    textAlignVertical: "center",
+    marginLeft: 15,
+    marginRight: 15,
   },
   buttonOutline: {
     backgroundColor: 'white',
@@ -112,6 +143,11 @@ const styles = StyleSheet.create({
     borderColor: '#0782F9',
     borderWidth: 2,
   },
+  deleteUserButton: {
+    backgroundColor: "red",
+    color: "white",
+    textAlignVertical: "center",
+  }
 });
 
 export default WalletScreen;
