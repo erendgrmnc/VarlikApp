@@ -34,7 +34,7 @@ function MapCoinList(coins) {
 const CoinDropDownPicker = (prop) => {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
-    { label: "Loading, Please Wait", value: "" },
+    { label: "Yükleniyor, Lütfen Bekleyin", value: "" },
   ]);
   let queryString =
     "?start=" +

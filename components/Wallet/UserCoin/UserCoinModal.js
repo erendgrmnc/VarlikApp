@@ -106,18 +106,18 @@ const UserCoinModal = (prop) => {
           }}
         >
           <Dataline
-            text="Current Price:"
+            text="Şimdiki Fiyat:"
             data={prop.currentCoin.quote.USD.price + "$"}
           ></Dataline>
           <Dataline
-            text="Buying Price:"
+            text="Satın Alınan Fiyat:"
             data={prop.coin.coinBuyPrice + "$"}
           ></Dataline>
 
-          <Dataline text="Amount:" data={prop.coin.coinBuyAmount}></Dataline>
+          <Dataline text="Miktar:" data={prop.coin.coinBuyAmount}></Dataline>
 
           <Dataline
-            text="P/L Percentage:"
+            text="Kar/Zarar Yüzdesi:"
             style={profitLoss ? styles.profitText : styles.lossText}
             data={
               (profitLoss ? "+" : "-") +
@@ -130,7 +130,7 @@ const UserCoinModal = (prop) => {
           ></Dataline>
 
           <Dataline
-            text="P/L Amount:"
+            text="Kar/Zarar Miktarı:"
             style={profitLoss ? styles.profitText : styles.lossText}
             data={
               (profitLoss ? "+" : "") +

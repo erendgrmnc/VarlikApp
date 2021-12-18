@@ -5,8 +5,8 @@ import { Directions } from "react-native-gesture-handler";
 const TypePicker = (prop) => {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
-    { label: "Crypto Coins", value: "crypto" },
-    { label: "Stocks", value: "stcks" },
+    { label: 'Kripto Para', value: 'crypto' },
+    { label: 'Hisse Senedi', value: 'stcks' }
   ]);
   return (
     <DropDownPicker
@@ -19,7 +19,7 @@ const TypePicker = (prop) => {
       setItems={setItems}
       defaultIndex={0}
       containerStyle={{ height: 40 }}
-      onChangeItem={(item) => console.log(item.label, item.value)}
+      onChangeItem={item => console.log(item.label, item.value)}
       dropDownDirection={Directions.DOWN}
       placeholder={prop.value}
     />
