@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View, ScrollView } from 'react-native'
 import UserStockContainer from './UserStockContainer'
 

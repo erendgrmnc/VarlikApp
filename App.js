@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
@@ -33,7 +32,12 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
         <Tab.Screen name='Kripto Para' component={GetCoinListScreen} />
         <Tab.Screen name='Hesap' component={GetAuthManagementScreen} />
         <Tab.Screen name='Borsa İstanbul' component={BistListScreen} />

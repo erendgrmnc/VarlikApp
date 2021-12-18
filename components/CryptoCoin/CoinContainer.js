@@ -4,9 +4,17 @@ import { View, StyleSheet, Text } from "react-native";
 const CoinContainer = (prop) => {
   const GetPercentageText = (percent) => {
     if (percent > 0) {
-      return <Text style={styles.positivePercentText}>{percent}</Text>;
+      return (
+        <Text style={styles.positivePercentText}>
+          +{parseFloat(percent).toFixed(2)}%
+        </Text>
+      );
     } else if (percent < 0) {
-      return <Text style={styles.negativePercentText}>{percent}</Text>;
+      return (
+        <Text style={styles.negativePercentText}>
+          {parseFloat(percent).toFixed(2)}%
+        </Text>
+      );
     } else {
       return <Text>{percent}</Text>;
     }
@@ -29,7 +37,9 @@ const CoinContainer = (prop) => {
             <Text>{prop.coin.quote.USD.price} $</Text>
           </View>
           <View>
-            {GetPercentageText(prop.coin.quote.USD.percent_change_24h)}
+            <Text>
+              {GetPercentageText(prop.coin.quote.USD.percent_change_24h)}
+            </Text>
           </View>
         </View>
       </View>

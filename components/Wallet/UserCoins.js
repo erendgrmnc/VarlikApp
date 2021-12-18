@@ -17,7 +17,7 @@ let isDataFetched = false;
 const UserCoins = (prop) => {
   const requestOptions = {
     method: "GET",
-    uri: "https://varlikappapi20211125195005.azurewebsites.net",
+    uri: "https://192.168.1.33:5001",
     qs: {},
     headers: {
       Authorization: "Bearer " + prop.userToken,
@@ -125,6 +125,7 @@ const UserCoins = (prop) => {
         </View>
       );
     } else {
+      console.log(prop.userToken);
       return (
         <View style={styles.container}>
           <AddUserCoinModal

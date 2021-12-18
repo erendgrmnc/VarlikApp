@@ -64,9 +64,11 @@ const AddUserCoinModal = (prop) => {
 
   function addUserCoinButtonOnClick() {
     if (coinDropDownValue == "" || coinDropDownValue == null) {
-      AlertUser("Kripto para seçilmedi", "Lütfen eklemek için kripto para seçin.");
-    }
-    else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
+      AlertUser(
+        "Kripto para seçilmedi",
+        "Lütfen eklemek için kripto para seçin."
+      );
+    } else if (buyAmount <= 0 || buyAmount == "" || buyAmount == null) {
       AlertUser(
         "Satın alma tutarı geçersiz",
         "Satın alma tutarı sıfırdan küçük veya sıfıra eşit olamaz."
@@ -193,6 +195,8 @@ const styles = StyleSheet.create({
   buttonOpen: {
     width: "50%",
     backgroundColor: "#239B56",
+    zIndex: -1,
+    elevation: -1
   },
   buttonClose: {
     backgroundColor: "#FA694A",
@@ -217,6 +221,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     zIndex: -1,
+    elevation: -2,
   },
   inputContainer: {
     marginBottom: 20,
