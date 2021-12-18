@@ -1,7 +1,33 @@
 import React from "react";
 import { StyleSheet, Text, View, Modal, Pressable } from "react-native";
 
+const Dataline = ({ text, data, style }) => (
+  <View
+    style={{
+      alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      paddingHorizontal: 30,
+      marginTop: 10,
+    }}
+  >
+    <Text style={{ fontWeight: "600", fontSize: 15, color: "#F0F3F4" }}>
+      {text}
+    </Text>
+    <Text
+      style={[{ fontWeight: "400", fontSize: 15, color: "#F0F3F4" }, style]}
+    >
+      {data}
+    </Text>
+  </View>
+);
+
 const customModal = () => {
+  const [profitLoss, setProfitLoss] = useState(
+    parseInt(prop.currentStock.alis) >
+    parseInt(prop.stock.stockBuyPrice)
+  );
+
   <Modal visible={prop.modalVisible} transparent animationType="slide">
     <View
       style={{
@@ -69,13 +95,13 @@ const customModal = () => {
           marginTop: 30,
         }}
       >
-        <Dataline text="Current Price:" data={prop.stock.alis + "$"}></Dataline>
+        <Dataline text="Current Price:" data={prop.currentStock.alis + "$"}></Dataline>
         <Dataline
           text="Buying Price:"
-          data={prop.coin.coinBuyPrice + "$"}
+          data={prop.coin.stockBuyPrice + "$"}
         ></Dataline>
 
-        <Dataline text="Amount:" data={prop.coin.coinBuyAmount}></Dataline>
+        <Dataline text="Amount:" data={prop.stock.stockAmount}></Dataline>
 
         <Dataline
           text="P/L Percentage:"
@@ -83,8 +109,8 @@ const customModal = () => {
           data={
             (profitLoss ? "+" : "-") +
             (
-              (parseInt(prop.currentCoin.quote.USD.price) * 100) /
-              parseInt(prop.coin.coinBuyPrice)
+              (parseInt(prop.currentStock.alis) * 100) /
+              parseInt(prop.stock.stockBuyPrice)
             ).toFixed(3) +
             "%"
           }
@@ -95,9 +121,9 @@ const customModal = () => {
           style={profitLoss ? styles.profitText : styles.lossText}
           data={
             (profitLoss ? "+" : "") +
-            (parseInt(prop.currentCoin.quote.USD.price) -
+            (parseInt(prop.currentStock.quote.USD.price) -
               parseInt(prop.coin.coinBuyPrice) *
-                parseInt(prop.coin.coinBuyAmount)) +
+              parseInt(prop.coin.coinBuyAmount)) +
             "$"
           }
         ></Dataline>

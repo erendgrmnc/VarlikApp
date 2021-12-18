@@ -195,6 +195,8 @@ const styles = StyleSheet.create({
   buttonOpen: {
     width: "50%",
     backgroundColor: "#239B56",
+    zIndex: -1,
+    elevation: -1
   },
   buttonClose: {
     backgroundColor: "#FA694A",
