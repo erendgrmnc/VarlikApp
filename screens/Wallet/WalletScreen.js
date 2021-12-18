@@ -47,14 +47,13 @@ const WalletScreen = (prop) => {
     }
   }
 
-
   if (dropValue == "stcks" || dropValue == null) {
     return (
       <View style={styles.container}>
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View style={{ flex: 1, width: "100%" }}>
           <UserStocks userToken={prop.userToken} />
-          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", backgroundColor: "lightgray", maxHeight: 70 }}>
             <TouchableOpacity
               style={[styles.button, styles.deleteUserButton]}
               onPress={deleteUserFunc}
@@ -81,7 +80,7 @@ const WalletScreen = (prop) => {
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View style={{ flex: 1, width: "100%" }}>
           <UserCoins userToken={prop.userToken} />
-          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", backgroundColor: "lightgray", maxHeight: 70 }}>
             <TouchableOpacity
               style={[styles.button, styles.deleteUserButton]}
               onPress={deleteUserFunc}

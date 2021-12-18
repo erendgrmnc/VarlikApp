@@ -25,7 +25,7 @@ const AddUserStockModal = (prop) => {
 
   const requestOptions = {
     method: "POST",
-    uri: "https://varlikappapi20211125195005.azurewebsites.net",
+    uri: "https://varlikappapi.azurewebsites.net",
     qs: {},
     headers: {
       Authorization: "Bearer " + prop.userToken,

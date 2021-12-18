@@ -26,7 +26,7 @@ const AddUserCoinModal = (prop) => {
 
   const requestOptions = {
     method: "POST",
-    uri: "https://varlikappapi20211125195005.azurewebsites.net",
+    uri: "https://varlikappapi.azurewebsites.net",
     qs: {},
     headers: {
       Authorization: "Bearer " + prop.userToken,
@@ -44,6 +44,7 @@ const AddUserCoinModal = (prop) => {
             "Kripto Para Başarıyla Eklendi !",
             "Kripto Para Hesap Cüzdanınıza Başarıyla Eklendi !"
           );
+          setModalVisible(!modalVisible);
         });
     } catch (error) {
       console.log(error);

@@ -10,7 +10,7 @@ import {
 
 const UserCoinModal = (prop) => {
   const [profitLoss, setProfitLoss] = useState(
-    parseInt(prop.currentCoin.quote.USD.price) >
+    parseInt(prop.currentCoin.quote.USD.price) >=
     parseInt(prop.coin.coinBuyPrice)
   );
 
@@ -122,8 +122,8 @@ const UserCoinModal = (prop) => {
             data={
               (profitLoss ? "+" : "-") +
               (
-                (parseInt(prop.currentCoin.quote.USD.price) * 100) /
-                parseInt(prop.coin.coinBuyPrice)
+                ((parseFloat(prop.currentCoin.quote.USD.price) - parseFloat(prop.coin.coinBuyPrice)) * 100) /
+                parseFloat(prop.coin.coinBuyPrice)
               ).toFixed(3) +
               "%"
             }
@@ -134,9 +134,9 @@ const UserCoinModal = (prop) => {
             style={profitLoss ? styles.profitText : styles.lossText}
             data={
               (profitLoss ? "+" : "") +
-              (parseInt(prop.currentCoin.quote.USD.price) -
-                parseInt(prop.coin.coinBuyPrice) *
-                parseInt(prop.coin.coinBuyAmount)) +
+              ((parseFloat(prop.currentCoin.quote.USD.price) -
+                parseFloat(prop.coin.coinBuyPrice)) *
+                parseFloat(prop.coin.coinBuyAmount)).toFixed(2) +
               "$"
             }
           ></Dataline>
