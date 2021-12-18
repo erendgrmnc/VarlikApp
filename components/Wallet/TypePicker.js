@@ -19,7 +19,7 @@ const TypePicker = (prop) => {
       setItems={setItems}
       defaultIndex={0}
       containerStyle={{ height: 40 }}
-      onChangeItem={item => console.log(item.label, item.value)}
+      onChangeItem={item => prop.setIsReloadNeeded(true)}
       dropDownDirection={Directions.DOWN}
       placeholder={"Hisse Senedi"}
     />

@@ -82,35 +82,47 @@ const UserCoins = (prop) => {
         }
       );
       setCurrentCoinList(MapCoinList(Object.values(currentResponse.data.data)));
-
-      const response = await axios.get(
-        requestOptions.uri + "/api/usercoin/getusercoins",
-        {
-          headers: requestOptions.headers,
-        }
-      );
-      setuserCoins(
-        MapCoinListWithCurrentValues(Object.values(response.data.userCoins))
-      );
       isDataFetched = true;
     } catch (error) {
       console.log(error);
     }
   };
 
+  useEffect(() => {
+    if (prop.userToken) {
+      axios.get(
+        requestOptions.uri + "/api/usercoin/getusercoins",
+        {
+          headers: requestOptions.headers,
+        }
+      ).then(response => {
+        setuserCoins(
+          MapCoinListWithCurrentValues(Object.values(response.data.userCoins))
+        );
+      })
+    }
+  }, [currentCoinList])
+
   if (prop.userToken != null && prop.userToken != "") {
-    if (!isDataFetched || userCoins.length == 0) {
+    if ((!isDataFetched || userCoins.length != 0) && !isDataFetched) {
+      console.log("girdi");
       fetchData();
       isDataFetched = true;
     }
   }
-
   useEffect(() => {
     if (isReloadNeeded) {
       fetchData();
       setIsReloadNeeded(false);
     }
   }, [isReloadNeeded]);
+
+  useEffect(() => {
+    if (prop.setIsReloadNeeded) {
+      fetchData();
+      prop.setIsReloadNeeded(false);
+    }
+  }, [prop.isReloadNeeded])
 
   if (prop.userToken != null && prop.userToken != "") {
     if (userCoins.length != 0) {
@@ -125,7 +137,6 @@ const UserCoins = (prop) => {
         </View>
       );
     } else {
-      console.log(prop.userToken);
       return (
         <View style={styles.container}>
           <AddUserCoinModal

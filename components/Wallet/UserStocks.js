@@ -76,22 +76,28 @@ const UserStocks = (prop) => {
         )
       );
 
-      const response = await axios.get(
-        requestOptions.uri + "/api/userstock/getuserstocks",
-        {
-          headers: requestOptions.headers,
-        }
-      );
-      setUserStocks(
-        MapStockListWithCurrentValues(Object.values(response.data.userStocks))
-      );
+
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    if (prop.userToken) {
+      axios.get(
+        requestOptions.uri + "/api/userstock/getuserstocks",
+        {
+          headers: requestOptions.headers,
+        }
+      ).then(response => {
+        setUserStocks(
+          MapStockListWithCurrentValues(Object.values(response.data.userStocks))
+        );
+      })
+    }
+  }, [currentStockList])
 
   if (prop.userToken != null && prop.userToken != "") {
-    if (!isDataFetched || userStocks.length == 0) {
+    if ((!isDataFetched || userStocks.length == 0) && !isDataFetched) {
       isDataFetched = true;
       fetchData();
     }
@@ -103,6 +109,13 @@ const UserStocks = (prop) => {
       setIsNeedReload(false);
     }
   }, [isNeedReload]);
+
+  useEffect(() => {
+    if (prop.setIsReloadNeeded) {
+      fetchData();
+      prop.setIsReloadNeeded(false);
+    }
+  }, [prop.isReloadNeeded])
 
   if (prop.userToken != null && prop.userToken != "") {
     if (userStocks.length != 0) {

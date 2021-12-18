@@ -9,6 +9,7 @@ import TypePicker from "../../components/Wallet/TypePicker";
 const WalletScreen = (prop) => {
   const [selectedValue, setSelectedValue] = useState("java");
   const [dropValue, setDropValue] = useState(null);
+  const [isReloadNeeded, setIsReloadNeeded] = useState(false);
 
   const deleteUserFunc = () => {
     deleteUser();
@@ -53,7 +54,7 @@ const WalletScreen = (prop) => {
       <View style={styles.container}>
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View style={{ flex: 1, width: "100%" }}>
-          <UserStocks userToken={prop.userToken} />
+          <UserStocks userToken={prop.userToken} isReloadNeeded={isReloadNeeded} setIsReloadNeeded={setIsReloadNeeded} />
           <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
             <TouchableOpacity
               style={[styles.button, styles.deleteUserButton]}
@@ -80,7 +81,7 @@ const WalletScreen = (prop) => {
       <View style={styles.container}>
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View style={{ flex: 1, width: "100%" }}>
-          <UserCoins userToken={prop.userToken} />
+          <UserCoins userToken={prop.userToken} isReloadNeeded={isReloadNeeded} setIsReloadNeeded={setIsReloadNeeded} />
           <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
             <TouchableOpacity
               style={[styles.button, styles.deleteUserButton]}
@@ -107,7 +108,6 @@ const WalletScreen = (prop) => {
       <View style={styles.container}>
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View>
-          <Text>zort</Text>
         </View>
       </View>
     );
