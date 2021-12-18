@@ -51,7 +51,7 @@ const CoinListScreen = (props) => {
     try {
       const response = await axios.get(
         "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest" +
-        queryString,
+          queryString,
         {
           headers: requestOptions.headers,
         }
@@ -112,7 +112,9 @@ const CoinListScreen = (props) => {
               borderRadius: 7,
               borderColor: "white",
               backgroundColor: "white",
+              paddingHorizontal: 10,
             }}
+            placeholder={"Ara..."}
             onChangeText={(e) => setSearchStr(e)}
             value={searchStr}
           ></TextInput>

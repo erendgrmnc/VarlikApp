@@ -75,7 +75,10 @@ const AddUserStockModal = (prop) => {
         "Satın alma tutarı sıfırdan küçük veya sıfıra eşit olamaz."
       );
     } else if (stockDropDownValue == "" || stockDropDownValue == null) {
-      AlertUser("Hisse Senedi Seçilmedi", "Lütfen eklemek için bir hisse senedi seçin.");
+      AlertUser(
+        "Hisse Senedi Seçilmedi",
+        "Lütfen eklemek için bir hisse senedi seçin."
+      );
     } else {
       console.log(stockDropDownValue + " - " + buyAmount + " - " + buyPrice);
       setPostModel({
@@ -210,6 +213,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     zIndex: -1,
+    elevation: -2,
   },
   inputContainer: {
     marginBottom: 20,
