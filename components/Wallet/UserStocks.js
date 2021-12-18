@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import axios from "axios";
 import UserStockScrollView from "./UserStock/UserStockScrollView";
 import AddUserStockModal from "./UserStock/AddUserStock/AddUserStockModal";
-import { cos } from "react-native-reanimated";
 
 let isDataFetched = false;
 

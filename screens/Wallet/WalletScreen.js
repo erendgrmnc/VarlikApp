@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, Picker, TouchableOpacity } from "react-native";
-import { auth, signOutUser } from "../../firebase";
+import { signOutUser } from "../../firebase";
 import axios from "axios";
 import UserCoins from "../../components/Wallet/UserCoins";
 import UserStocks from "../../components/Wallet/UserStocks";
