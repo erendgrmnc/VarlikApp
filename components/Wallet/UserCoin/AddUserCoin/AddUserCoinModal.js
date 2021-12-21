@@ -93,7 +93,7 @@ const AddUserCoinModal = (prop) => {
     if (isModelReady) {
       postUserCoin(postModel);
       setModelReady(false);
-      prop.setIsNeedReload(true);
+      prop.setIsNeedReloaded(true);
     }
   }, [postModel]);
 

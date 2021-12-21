@@ -130,7 +130,7 @@ const UserCoins = (prop) => {
           <AddUserCoinModal
             userToken={prop.userToken}
             isReloadNeeded={isReloadNeeded}
-            setIsNeedReload={setIsReloadNeeded}
+            setIsNeedReloaded={setIsReloadNeeded}
           />
           <UserCoinScrollView userToken={prop.userToken} setIsReloadNeeded={prop.setIsReloadNeeded} userCoins={userCoins} />
         </View>
