@@ -19,7 +19,6 @@ function MapStockList(stocks, symbols) {
     stockList[index].stock.symbol = symbols[index];
   });
 
-  console.log(stockList[2]);
 
   return stockList;
 }

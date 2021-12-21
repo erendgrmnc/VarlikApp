@@ -11,7 +11,6 @@ const SingInScreen = () => {
             {
                 text: "Tamam",
                 onPress: () => {
-                    console.log("Ok pressed");
                 },
                 style: "cancel",
             },

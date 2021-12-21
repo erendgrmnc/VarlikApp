@@ -27,12 +27,8 @@ const AuthManagementScreen = (prop) => {
         if (user) {
             setUserSignedIn(true);
             if (!authFlag) {
-                console.log('calisti')
                 user.getIdToken(true).then(idToken => {
-                    console.log("------TOKEN-------")
                     setUserToken(idToken);
-                    console.log(idToken);
-                    console.log("------------------");
                 });
                 authFlag = true;
             }
@@ -42,7 +38,6 @@ const AuthManagementScreen = (prop) => {
         else {
             setUserSignedIn(false);
             if (userToken != null || userToken != '') {
-                console.log('Haydaaaa');
             }
         }
     });

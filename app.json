@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "VizeHazirlik",
-    "slug": "VizeHazirlik",
-    "version": "1.0.0",
+    "name": "Varlık App",
+    "slug": "VarlikApp",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/varlikappicon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

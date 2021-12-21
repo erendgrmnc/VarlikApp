@@ -17,8 +17,6 @@ const UserStocks = (prop) => {
       stockList.push({ stock: stock, key: index });
       stockList[index].stock.symbol = symbols[index];
     });
-
-    // console.log(stockList[0]);
     return stockList;
   }
   function MapStockListWithCurrentValues(stocks) {
@@ -67,8 +65,6 @@ const UserStocks = (prop) => {
           headers: currentStocksRequestOptions.headers,
         }
       );
-
-      // console.log(stockSymbols);
       setCurrentStockList(
         MapStockList(
           Object.values(currentStocksResponse.data),
@@ -125,7 +121,7 @@ const UserStocks = (prop) => {
             userToken={prop.userToken}
             setIsNeedReload={setIsNeedReload}
           />
-          <UserStockScrollView userStocks={userStocks} />
+          <UserStockScrollView userToken={prop.userToken} setIsReloadNeeded={prop.setIsReloadNeeded} userStocks={userStocks} />
         </View>
       );
     } else {

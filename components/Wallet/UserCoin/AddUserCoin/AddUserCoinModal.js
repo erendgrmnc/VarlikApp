@@ -56,7 +56,6 @@ const AddUserCoinModal = (prop) => {
       {
         text: "Tamam",
         onPress: () => {
-          console.log("Ok pressed");
         },
         style: "cancel",
       },
@@ -80,7 +79,6 @@ const AddUserCoinModal = (prop) => {
         "Alış fiyatı sıfırdan küçük veya sıfıra eşit olamaz."
       );
     } else {
-      console.log(coinDropDownValue + " - " + buyAmount + " - " + buyPrice);
       setPostModel({
         ...postModel,
         CoinBuyAmount: buyAmount,

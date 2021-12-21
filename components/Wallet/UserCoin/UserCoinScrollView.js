@@ -7,6 +7,8 @@ const UserCoinScrollView = (prop) => {
     return (
       <View key={index}>
         <UserCoinContainer
+          userToken={prop.userToken}
+          setIsReloadNeeded={prop.setIsReloadNeeded}
           coin={coinObj.coin}
           currentCoin={coinObj.currentCoin}
         />

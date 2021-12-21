@@ -1,5 +1,16 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, View, Modal, Pressable, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, View, Modal, Pressable, TouchableOpacity, Alert } from "react-native";
+import axios from "axios";
+function AlertUser(header, message) {
+  Alert.alert(header, message, [
+    {
+      text: "Tamam",
+      onPress: () => {
+      },
+      style: "cancel",
+    },
+  ]);
+}
 
 const Dataline = ({ text, data, style }) => (
   <View
@@ -23,6 +34,57 @@ const Dataline = ({ text, data, style }) => (
 );
 
 const UserStockModal = (prop) => {
+
+  const [isModelReady, setModelReady] = useState(false);
+  const [postModel, setPostModel] = useState({
+    UserStockID: 0
+  });
+
+  const requestOptions = {
+    method: "POST",
+    uri: "https://varlikappapi.azurewebsites.net/api/userstock/deleteuserstock",
+    qs: {},
+    headers: {
+      Authorization: "Bearer " + prop.userToken,
+    },
+  };
+
+  const deleteUserStock = async (request) => {
+    try {
+      await axios
+        .post(requestOptions.uri, request, {
+          headers: requestOptions.headers,
+        }).then(response => {
+          if (response.data.isSuccess) {
+            AlertUser(
+              "Hisse Başarıyla Silindi !",
+              "Hisse Hesap Cüzdanınızdan Başarıyla Silindi !"
+            );
+          }
+
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  function deleteButtonOnClick() {
+
+    setPostModel({
+      ...postModel,
+      UserStockID: prop.stock.userStockID
+    });
+    setModelReady(true);
+
+  }
+
+  useEffect(() => {
+    if (isModelReady) {
+      deleteUserStock(postModel);
+      setModelReady(false);
+      prop.setIsReloadNeeded(true);
+    }
+  }, [postModel]);
+
   const [profitLoss, setProfitLoss] = useState(
     parseFloat(prop.currentStock.alis) >=
     parseFloat(prop.stock.stockBuyPrice)
@@ -133,6 +195,12 @@ const UserStockModal = (prop) => {
         </View>
 
         <View style={styles.bottomContainer}>
+          <TouchableOpacity
+            style={[styles.button, styles.buttonClose, { marginBottom: 5, backgroundColor: 'red' }]}
+            onPress={deleteButtonOnClick}
+          >
+            <Text style={styles.closeButtonText}>Sil</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.buttonClose]}
             onPress={() => prop.setModalVisible(!prop.modalVisible)}

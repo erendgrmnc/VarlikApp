@@ -6,7 +6,7 @@ const UserStockScrollView = (prop) => {
     const listStocks = prop.userStocks.map((stockObj, index) => {
         return (
             <View key={index}>
-                <UserStockContainer stock={stockObj.stock} currentStock={stockObj.currentStock} />
+                <UserStockContainer userToken={prop.userToken} setIsReloadNeeded={prop.setIsReloadNeeded} stock={stockObj.stock} currentStock={stockObj.currentStock} />
             </View>
         )
     });

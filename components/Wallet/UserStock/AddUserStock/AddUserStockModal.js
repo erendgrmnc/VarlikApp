@@ -34,7 +34,6 @@ const AddUserStockModal = (prop) => {
 
   const postUserStock = async (request) => {
     try {
-      console.log(request);
       const response = await axios
         .post(requestOptions.uri + "/api/userstock/adduserstock", request, {
           headers: requestOptions.headers,
@@ -56,7 +55,6 @@ const AddUserStockModal = (prop) => {
       {
         text: "Tamam",
         onPress: () => {
-          console.log("Ok pressed");
         },
         style: "cancel",
       },
@@ -80,7 +78,6 @@ const AddUserStockModal = (prop) => {
         "Lütfen eklemek için bir hisse senedi seçin."
       );
     } else {
-      console.log(stockDropDownValue + " - " + buyAmount + " - " + buyPrice);
       setPostModel({
         ...postModel,
         StockAmount: buyAmount,

@@ -30,10 +30,12 @@ const UserCoinContainer = (prop) => {
       </TouchableOpacity>
       <View style={{ width: "100%", height: 2, backgroundColor: "#99A3A4" }} />
       <UserCoinModal
+        userToken={prop.userToken}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         coin={prop.coin}
         currentCoin={prop.currentCoin}
+        setIsReloadNeeded={prop.setIsReloadNeeded}
       />
     </View>
   );

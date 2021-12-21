@@ -37,6 +37,8 @@ const UserStockContainer = (prop) => {
         </TouchableOpacity>
 
         <UserStockModal
+          userToken={prop.userToken}
+          setIsReloadNeeded={prop.setIsReloadNeeded}
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
           stock={prop.stock}

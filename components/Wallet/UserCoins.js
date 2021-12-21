@@ -105,7 +105,6 @@ const UserCoins = (prop) => {
 
   if (prop.userToken != null && prop.userToken != "") {
     if ((!isDataFetched || userCoins.length != 0) && !isDataFetched) {
-      console.log("girdi");
       fetchData();
       isDataFetched = true;
     }
@@ -133,7 +132,7 @@ const UserCoins = (prop) => {
             isReloadNeeded={isReloadNeeded}
             setIsNeedReload={setIsReloadNeeded}
           />
-          <UserCoinScrollView userCoins={userCoins} />
+          <UserCoinScrollView userToken={prop.userToken} setIsReloadNeeded={prop.setIsReloadNeeded} userCoins={userCoins} />
         </View>
       );
     } else {
@@ -142,7 +141,7 @@ const UserCoins = (prop) => {
           <AddUserCoinModal
             userToken={prop.userToken}
             isReloadNeeded={isReloadNeeded}
-            setIsNeedReload={setIsReloadNeeded}
+            setIsNeedReloaded={setIsReloadNeeded}
           />
         </View>
       );
