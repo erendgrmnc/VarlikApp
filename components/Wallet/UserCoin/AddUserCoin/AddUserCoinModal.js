@@ -44,6 +44,7 @@ const AddUserCoinModal = (prop) => {
             "Kripto Para Başarıyla Eklendi !",
             "Kripto Para Hesap Cüzdanınıza Başarıyla Eklendi !"
           );
+          setModalVisible(!modalVisible);
         });
     } catch (error) {
       console.log(error);

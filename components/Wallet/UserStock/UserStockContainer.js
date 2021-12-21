@@ -22,7 +22,7 @@ const UserStockContainer = (prop) => {
         >
           <View style={styles.mainContainer}>
             <View>
-              <Text>{prop.stock.stockCode}</Text>
+              <Text style={{ fontSize: 16, fontWeight: "bold" }}>{prop.stock.stockCode}</Text>
             </View>
             <View style={styles.pricesContainer}>
               <View>
@@ -43,7 +43,7 @@ const UserStockContainer = (prop) => {
           currentStock={prop.currentStock}
         />
       </View>
-      <View style={{ width: "100%", height: 1, backgroundColor: "#99A3A4" }} />
+      <View style={{ width: "100%", height: 2, backgroundColor: "#99A3A4" }} />
     </>
   );
 };
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 5,
     paddingVertical: 5,
-    paddingHorizontal: 3,
+    paddingHorizontal: 20,
     justifyContent: "space-between",
     alignItems: "center",
     alignContent: "space-between",

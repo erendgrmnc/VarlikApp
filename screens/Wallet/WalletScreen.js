@@ -48,14 +48,13 @@ const WalletScreen = (prop) => {
     }
   }
 
-
   if (dropValue == "stcks" || dropValue == null) {
     return (
       <View style={styles.container}>
-        <TypePicker value={dropValue} setValue={setDropValue} />
+        <TypePicker value={dropValue} setValue={setDropValue} setIsReloadNeeded={setIsReloadNeeded} />
         <View style={{ flex: 1, width: "100%" }}>
-          <UserStocks userToken={prop.userToken} isReloadNeeded={isReloadNeeded} setIsReloadNeeded={setIsReloadNeeded} />
-          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
+          <UserStocks userToken={prop.userToken} setIsReloadNeeded={setIsReloadNeeded} isReloadNeeded={isReloadNeeded} />
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", backgroundColor: "lightgray", maxHeight: 70 }}>
             <TouchableOpacity
               style={[styles.button, styles.deleteUserButton]}
               onPress={deleteUserFunc}
@@ -81,8 +80,8 @@ const WalletScreen = (prop) => {
       <View style={styles.container}>
         <TypePicker value={dropValue} setValue={setDropValue} />
         <View style={{ flex: 1, width: "100%" }}>
-          <UserCoins userToken={prop.userToken} isReloadNeeded={isReloadNeeded} setIsReloadNeeded={setIsReloadNeeded} />
-          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly" }}>
+          <UserCoins userToken={prop.userToken} setIsReloadNeeded={setIsReloadNeeded} isReloadNeeded={isReloadNeeded} />
+          <View style={{ flex: 1, flexDirection: "row", justifyContent: "space-evenly", backgroundColor: "lightgray", maxHeight: 70 }}>
             <TouchableOpacity
               style={[styles.button, styles.deleteUserButton]}
               onPress={deleteUserFunc}

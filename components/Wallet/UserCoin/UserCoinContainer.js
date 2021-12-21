@@ -19,7 +19,7 @@ const UserCoinContainer = (prop) => {
           </View>
           <View style={styles.pricesContainer}>
             <View>
-              <Text>Alış Fiyatı: {prop.coin.coinBuyPrice} ₺</Text>
+              <Text>Alış Fiyatı: {prop.coin.coinBuyPrice} $</Text>
             </View>
             <View style={styles.rowContainer}>
               <Text>Adet: </Text>
@@ -28,7 +28,7 @@ const UserCoinContainer = (prop) => {
           </View>
         </View>
       </TouchableOpacity>
-      <View style={{ width: "100%", height: 1, backgroundColor: "#99A3A4" }} />
+      <View style={{ width: "100%", height: 2, backgroundColor: "#99A3A4" }} />
       <UserCoinModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
